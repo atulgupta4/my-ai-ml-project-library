@@ -1,8 +1,355 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A curated library of applied AI and machine learning projects, experiments and technical explorations."><title>My AI/ML Project Library</title><link rel="stylesheet" href="assets/style.css"></head><body>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="mark">AI</span><span>My AI/ML Project Library</span></a><nav class="navlinks"><a href="#projects">Projects</a><a href="#about">About</a></nav></div></header>
-<main class="wrap"><section class="hero"><div class="eyebrow"><span class="pulse"></span> Applied AI · Machine Learning · Research</div><h1>A workspace for <span class="gradient">building intelligent systems.</span></h1><p class="lede">A growing collection of hands-on projects, experiments and technical explorations — from statistical learning to deep learning and intelligent applications.</p><div class="meta"><span class="pill">⌘ &nbsp; Practical experiments</span><span class="pill">◫ &nbsp; Technical documentation</span><span class="pill">↗ &nbsp; Reproducible work</span></div></section>
-<section id="projects"><div class="head"><div><h2>Project library</h2><p>Browse by area, search technologies, or open a project for details.</p></div><span class="pill">5 projects listed</span></div>
-<div class="controls"><input id="project-search" class="search" type="search" placeholder="Search projects or technologies…" aria-label="Search projects"><button class="filter active" data-filter="all">All projects</button><button class="filter" data-filter="machine-learning">Machine learning</button><button class="filter" data-filter="data-science">Data science</button><button class="filter" data-filter="deep-learning">Deep learning</button><button class="filter" data-filter="generative-ai">NLP / AI</button></div>
-<div class="grid"><a class="card" href="projects/payment-anomaly-detection/index.html" data-project-card data-category="machine-learning"><div class="cardtop"><div class="icon">◈</div><span class="status progress">In progress</span></div><h3>Payment Transaction Anomaly Detection</h3><p>An end-to-end exploration of payment fraud detection using statistical analysis, anomaly detection and supervised learning.</p><div class="tags"><span class="tag">Fraud Detection</span><span class="tag">Statistics</span><span class="tag">Isolation Forest</span><span class="tag">Scikit-learn</span></div><div class="cardlink"><span>Explore project</span><span>↗</span></div></a><a class="card" href="projects/vine-video-analysis/index.html" data-project-card data-category="data-science"><div class="cardtop"><div class="icon">▧</div><span class="status exploration">Exploration</span></div><h3>Vine Video Analysis</h3><p>Clustering and interpreting a large collection of short-form videos using video embeddings and transcript information.</p><div class="tags"><span class="tag">Video Embeddings</span><span class="tag">PCA</span><span class="tag">K-Means</span><span class="tag">NLP</span></div><div class="cardlink"><span>Explore project</span><span>↗</span></div></a><a class="card" href="projects/reinforcement-learning/index.html" data-project-card data-category="deep-learning"><div class="cardtop"><div class="icon">⌁</div><span class="status exploration">Exploration</span></div><h3>Reinforcement Learning Experiments</h3><p>Hands-on experiments with policy-gradient methods, PPO training and simulated control environments.</p><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">PPO</span><span class="tag">Gymnasium</span><span class="tag">MuJoCo</span></div><div class="cardlink"><span>Explore project</span><span>↗</span></div></a><a class="card" href="projects/customer-churn/index.html" data-project-card data-category="machine-learning"><div class="cardtop"><div class="icon">◎</div><span class="status planned">Prior experiments</span></div><h3>Customer Churn Prediction</h3><p>Prior tabular prediction experiments using classical machine learning and deep learning methods.</p><div class="tags"><span class="tag">Classification</span><span class="tag">Random Forest</span><span class="tag">XGBoost</span><span class="tag">SVR</span></div><div class="cardlink"><span>Explore project</span><span>↗</span></div></a><a class="card" href="projects/nlp-chatbot/index.html" data-project-card data-category="generative-ai"><div class="cardtop"><div class="icon">⌘</div><span class="status planned">Project archive</span></div><h3>NLP Review Chatbot</h3><p>An NLP chatbot experiment using product review text, language processing and topic-oriented exploration.</p><div class="tags"><span class="tag">NLP</span><span class="tag">Amazon Reviews</span><span class="tag">Gensim</span><span class="tag">NLTK</span></div><div class="cardlink"><span>Explore project</span><span>↗</span></div></a></div><div class="empty" id="empty-state">No projects match that search. Try another keyword or category.</div></section>
-<section class="callout" id="about"><div><h3>Built through experiments. Documented as systems.</h3><p>This library records the problem, data, methods, results and engineering decisions behind each project. Entries are updated as work progresses.</p></div><a class="btn" href="#projects">Browse projects ↑</a></section></main>
-<footer class="footer"><div class="wrap">My AI/ML Project Library · A living collection of technical work · Statuses and results are updated as experiments are completed.</div></footer><script src="assets/script.js"></script></body></html>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A curated library of applied AI and machine learning projects, experiments and technical explorations.">
+  <title>My AI/ML Project Library</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <span class="mark">AI</span>
+      <span>My AI/ML Project Library</span>
+    </a>
+
+    <nav class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="pulse"></span>
+      Applied AI · Machine Learning · Research
+    </div>
+
+    <h1>
+      A workspace for
+      <span class="gradient">building intelligent systems.</span>
+    </h1>
+
+    <p class="lede">
+      A growing collection of hands-on projects, experiments and
+      technical explorations — from statistical learning to deep
+      learning and intelligent applications.
+    </p>
+
+    <div class="meta">
+      <span class="pill">⌘ &nbsp; Practical experiments</span>
+      <span class="pill">◫ &nbsp; Technical documentation</span>
+      <span class="pill">↗ &nbsp; Reproducible work</span>
+    </div>
+  </section>
+
+  <!-- PROJECT LIBRARY -->
+  <section id="projects">
+    <div class="head">
+      <div>
+        <h2>Project library</h2>
+        <p>
+          Browse by area, search technologies, or open a project for details.
+        </p>
+      </div>
+      <span class="pill">5 projects listed</span>
+    </div>
+
+    <div class="controls">
+      <input
+        id="project-search"
+        class="search"
+        type="search"
+        placeholder="Search projects or technologies…"
+        aria-label="Search projects"
+      >
+
+      <button class="filter active" data-filter="all">All projects</button>
+      <button class="filter" data-filter="machine-learning">Machine learning</button>
+      <button class="filter" data-filter="data-science">Data science</button>
+      <button class="filter" data-filter="deep-learning">Deep learning</button>
+      <button class="filter" data-filter="generative-ai">NLP / AI</button>
+    </div>
+
+    <div class="grid">
+
+      <a class="card"
+         href="projects/payment-anomaly-detection/index.html"
+         data-project-card
+         data-category="machine-learning">
+
+        <div class="cardtop">
+          <div class="icon">◈</div>
+          <span class="status progress">In progress</span>
+        </div>
+
+        <h3>Payment Transaction Anomaly Detection</h3>
+
+        <p>
+          An end-to-end exploration of payment fraud detection using
+          statistical analysis, anomaly detection and supervised learning.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Fraud Detection</span>
+          <span class="tag">Statistics</span>
+          <span class="tag">Isolation Forest</span>
+          <span class="tag">Scikit-learn</span>
+        </div>
+
+        <div class="cardlink">
+          <span>Explore project</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <a class="card"
+         href="projects/vine-video-analysis/index.html"
+         data-project-card
+         data-category="data-science">
+
+        <div class="cardtop">
+          <div class="icon">▧</div>
+          <span class="status exploration">Exploration</span>
+        </div>
+
+        <h3>Vine Video Analysis</h3>
+
+        <p>
+          Clustering and interpreting a large collection of short-form
+          videos using video embeddings and transcript information.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Video Embeddings</span>
+          <span class="tag">PCA</span>
+          <span class="tag">K-Means</span>
+          <span class="tag">NLP</span>
+        </div>
+
+        <div class="cardlink">
+          <span>Explore project</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <a class="card"
+         href="projects/reinforcement-learning/index.html"
+         data-project-card
+         data-category="deep-learning">
+
+        <div class="cardtop">
+          <div class="icon">⌁</div>
+          <span class="status exploration">Exploration</span>
+        </div>
+
+        <h3>Reinforcement Learning Experiments</h3>
+
+        <p>
+          Hands-on experiments with policy-gradient methods, PPO training
+          and simulated control environments.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Reinforcement Learning</span>
+          <span class="tag">PPO</span>
+          <span class="tag">Gymnasium</span>
+          <span class="tag">MuJoCo</span>
+        </div>
+
+        <div class="cardlink">
+          <span>Explore project</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <a class="card"
+         href="projects/customer-churn/index.html"
+         data-project-card
+         data-category="machine-learning">
+
+        <div class="cardtop">
+          <div class="icon">◎</div>
+          <span class="status planned">Prior experiments</span>
+        </div>
+
+        <h3>Customer Churn Prediction</h3>
+
+        <p>
+          Prior tabular prediction experiments using classical machine
+          learning and deep learning methods.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Classification</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">SVR</span>
+        </div>
+
+        <div class="cardlink">
+          <span>Explore project</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <a class="card"
+         href="projects/nlp-chatbot/index.html"
+         data-project-card
+         data-category="generative-ai">
+
+        <div class="cardtop">
+          <div class="icon">⌘</div>
+          <span class="status planned">Project archive</span>
+        </div>
+
+        <h3>NLP Review Chatbot</h3>
+
+        <p>
+          An NLP chatbot experiment using product review text,
+          language processing and topic-oriented exploration.
+        </p>
+
+        <div class="tags">
+          <span class="tag">NLP</span>
+          <span class="tag">Amazon Reviews</span>
+          <span class="tag">Gensim</span>
+          <span class="tag">NLTK</span>
+        </div>
+
+        <div class="cardlink">
+          <span>Explore project</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="empty" id="empty-state">
+      No projects match that search. Try another keyword or category.
+    </div>
+  </section>
+
+  <!-- SYSTEM ARCHITECTURE -->
+  <section id="architecture" style="margin-top: 64px;">
+
+    <div class="head">
+      <div>
+        <h2>System Architecture</h2>
+        <p>
+          From machine learning experimentation to a proposed
+          real-time fraud detection architecture.
+        </p>
+      </div>
+      <span class="pill">Payment Fraud Detection</span>
+    </div>
+
+    <div style="
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid var(--border, #e5e7eb);
+      border-radius: 16px;
+      background: var(--card, #ffffff);
+    ">
+
+      <p style="margin-top: 0; margin-bottom: 20px;">
+        The architecture illustrates two connected perspectives:
+        the machine learning development lifecycle and the proposed
+        real-time transaction processing and fraud decisioning pipeline.
+      </p>
+
+      <figure style="margin: 0;">
+
+        <a
+          href="assets/images/payment-fraud-detection-architecture.drawio.svg"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open full-size payment fraud detection architecture diagram"
+        >
+          <img
+            src="assets/images/payment-fraud-detection-architecture.drawio.svg"
+            alt="Payment Fraud Detection System Architecture showing machine learning development, model evaluation, explainability, Kafka-based transaction ingestion, feature processing, model serving, fraud decisioning, monitoring and feedback."
+            loading="lazy"
+            style="
+              display: block;
+              width: 100%;
+              height: auto;
+              border-radius: 10px;
+            "
+          >
+        </a>
+
+        <figcaption style="
+          margin-top: 14px;
+          text-align: center;
+          font-size: 0.85rem;
+          opacity: 0.75;
+        ">
+          Payment Transaction Anomaly Detection — End-to-End Architecture.
+          Click the diagram to open it at full size.
+        </figcaption>
+
+      </figure>
+
+      <div style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      ">
+        <a
+          href="projects/payment-anomaly-detection/index.html"
+          class="btn"
+        >
+          Explore Project →
+        </a>
+
+        <a
+          href="assets/images/payment-fraud-detection-architecture.drawio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn"
+        >
+          View Editable Diagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="callout" id="about">
+    <div>
+      <h3>Built through experiments. Documented as systems.</h3>
+      <p>
+        This library records the problem, data, methods, results and
+        engineering decisions behind each project. Entries are updated
+        as work progresses.
+      </p>
+    </div>
+
+    <a class="btn" href="#projects">Browse projects ↑</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    My AI/ML Project Library · A living collection of technical work ·
+    Statuses and results are updated as experiments are completed.
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="fraud-architecture" name="Payment Fraud Detection">
+    <mxGraphModel dx="2054" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=23;fontColor=#0F172A;" value="&lt;b&gt;PAYMENT TRANSACTION ANOMALY DETECTION&lt;/b&gt;&lt;br&gt;End-to-end ML lifecycle and proposed real-time production architecture" vertex="1">
+          <mxGeometry height="65" width="1160" x="260" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontColor=#334155;" value="Solid border = implemented in this project     |     Dashed border = proposed production component" vertex="1">
+          <mxGeometry height="30" width="780" x="450" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="laneA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;verticalAlign=top;spacingTop=16;fontStyle=1;fontSize=18;fontColor=#1E3A8A;" value="A. MACHINE LEARNING DEVELOPMENT &amp; MODEL LIFECYCLE" vertex="1">
+          <mxGeometry height="300" width="1620" x="30" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="laneB" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA5800;strokeWidth=2;verticalAlign=top;spacingTop=16;fontStyle=1;fontSize=18;fontColor=#9A3412;" value="B. REAL-TIME FRAUD DETECTION &amp; DECISIONING (PROPOSED)" vertex="1">
+          <mxGeometry height="390" width="1620" x="30" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#172554;fontSize=14;align=center;verticalAlign=middle;spacing=8;" value="&lt;b&gt;Data Acquisition&lt;/b&gt;&lt;br&gt;ULB / Kaggle dataset" vertex="1">
+          <mxGeometry height="100" width="220" x="65" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="prep" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#172554;fontSize=14;align=center;verticalAlign=middle;spacing=8;" value="&lt;b&gt;Data Preparation&lt;/b&gt;&lt;br&gt;Deduplication · scaling&lt;br&gt;Stratified train / validation / test" vertex="1">
+          <mxGeometry height="100" width="235" x="365" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="train" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#172554;fontSize=14;align=center;verticalAlign=middle;spacing=8;" value="&lt;b&gt;Model Training&lt;/b&gt;&lt;br&gt;Logistic Regression&lt;br&gt;Random Forest · XGBoost" vertex="1">
+          <mxGeometry height="100" width="235" x="680" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="eval" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#172554;fontSize=14;align=center;verticalAlign=middle;spacing=8;" value="&lt;b&gt;Model Evaluation&lt;/b&gt;&lt;br&gt;Precision · Recall · F1&lt;br&gt;PR-AUC · ROC-AUC · Threshold" vertex="1">
+          <mxGeometry height="100" width="245" x="995" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="explain" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA5800;strokeWidth=2;fontColor=#7C2D12;fontSize=14;align=center;verticalAlign=middle;spacing=8;" value="&lt;b&gt;Explainability&lt;/b&gt;&lt;br&gt;Feature importance&lt;br&gt;SHAP summary analysis" vertex="1">
+          <mxGeometry height="100" width="245" x="1320" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="artifact" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#0F766E;strokeWidth=2;fontColor=#134E4A;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;Selected Model Artifact&lt;/b&gt;&lt;br&gt;Versioned XGBoost model · experimental threshold 0.70" vertex="1">
+          <mxGeometry height="60" width="300" x="690" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#0F766E;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#134E4A;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Payment Gateway&lt;/b&gt;&lt;br&gt;Transaction request" vertex="1">
+          <mxGeometry height="90" width="200" x="65" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#0F766E;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#134E4A;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br&gt;Transaction event topic" vertex="1">
+          <mxGeometry height="90" width="205" x="330" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="stream" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#0F766E;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#134E4A;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Stream Processing&lt;/b&gt;&lt;br&gt;Kafka Streams / Flink&lt;br&gt;Validation &amp; enrichment" vertex="1">
+          <mxGeometry height="90" width="230" x="600" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="features" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#0F766E;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#134E4A;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Feature Service&lt;/b&gt;&lt;br&gt;Velocity / history features&lt;br&gt;Redis or online feature store" vertex="1">
+          <mxGeometry height="90" width="230" x="895" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="serving" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA5800;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#7C2D12;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Model Serving&lt;/b&gt;&lt;br&gt;XGBoost inference API&lt;br&gt;Fraud probability score" vertex="1">
+          <mxGeometry height="90" width="220" x="1190" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#4C1D95;fontSize=14;align=center;verticalAlign=middle;" value="&lt;b&gt;Decision Engine&lt;/b&gt;&lt;br&gt;Threshold + business rules" vertex="1">
+          <mxGeometry height="90" width="175" x="1450" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="approve" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#14532D;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;APPROVE&lt;/b&gt;&lt;br&gt;Low risk" vertex="1">
+          <mxGeometry height="65" width="105" x="1320" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="review" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#78350F;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;REVIEW&lt;/b&gt;&lt;br&gt;Manual / step-up" vertex="1">
+          <mxGeometry height="65" width="105" x="1450" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="decline" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#7F1D1D;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;DECLINE&lt;/b&gt;&lt;br&gt;High risk" vertex="1">
+          <mxGeometry height="65" width="75" x="1580" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="monitor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#0F172A;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;Observability &amp; Model Monitoring&lt;/b&gt;&lt;br&gt;Prometheus · Grafana · latency · throughput · errors · feature / prediction drift" vertex="1">
+          <mxGeometry height="60" width="650" x="250" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="feedback" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#0F172A;fontSize=13;align=center;verticalAlign=middle;" value="&lt;b&gt;Feedback &amp; Retraining Loop&lt;/b&gt;&lt;br&gt;Confirmed fraud outcomes · labeled data · periodic model refresh" vertex="1">
+          <mxGeometry height="60" width="570" x="980" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;" target="prep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="prep" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;" target="train">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="train" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;" target="eval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="eval" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;" target="explain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="eval" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0F766E;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="artifact" value="selected model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C2410C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C2410C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="stream">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="stream" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C2410C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="features">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="features" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C2410C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="serving">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="serving" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C2410C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#16A34A;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="approve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D97706;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="review">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#DC2626;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="decline">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="serving" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="monitor" value="metrics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="feedback" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="train" value="feedback / retraining data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
