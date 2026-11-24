@@ -1,6 +1,215 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payment Transaction Anomaly Detection | My AI/ML Project Library</title><link rel="stylesheet" href="../../assets/style.css"></head><body>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="../../index.html"><span class="mark">AI</span><span>My AI/ML Project Library</span></a><nav class="navlinks"><a href="../../index.html#projects">All projects</a></nav></div></header>
-<main class="wrap"><section class="detailhero"><a class="back" href="../../index.html#projects">← Back to project library</a><div class="eyebrow"><span class="pulse"></span> Machine Learning</div><h1>Payment Transaction Anomaly Detection</h1><p class="lede">An end-to-end exploration of payment fraud detection using statistical analysis, anomaly detection and supervised learning.</p><div class="meta"><span class="status progress">In progress</span><span class="pill">Fraud Detection</span><span class="pill">Statistics</span><span class="pill">Isolation Forest</span><span class="pill">Scikit-learn</span></div></section>
-<div class="layout"><article class="panel"><section><h2>Project overview</h2><p>Build and evaluate a transaction anomaly detection workflow using the ULB Credit Card Fraud Detection dataset. The project moves from exploratory statistics to model comparison, threshold analysis and a production-oriented architecture.</p></section><section><h2>Dataset / inputs</h2><p>ULB Credit Card Fraud Detection (Kaggle)</p><p><a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud" target="_blank" rel="noopener">Open dataset ↗</a></p></section><section><h2>Methods and experiments</h2><ul><li>Feature distribution analysis</li><li>Class-imbalance assessment</li><li>Statistical thresholds (Z-score / IQR)</li><li>Isolation Forest</li><li>Supervised classification baseline</li><li>Precision-recall and threshold analysis</li></ul></section><section><h2>Current status and next step</h2><p>In progress — project notes will be expanded as the work progresses.</p><div class="note"><strong>Next:</strong> Load the dataset, inspect schema and class balance, then profile transaction amount and time features.</div></section><section><h2>Notes and limitations</h2><p>The dataset contains anonymized PCA components (V1–V28) and covers a short time window. It is useful for imbalance and detection experiments, but does not support rich customer-level behavioral or long-term seasonality analysis.</p></section><section><h2>Code, notebook and results</h2><p>Links to the public notebook, source repository, experiment outputs and final results will be added here when available.</p></section></article>
-<aside class="panel"><h3>Project details</h3><div class="sideitem"><small>Category</small><span>Machine Learning</span></div><div class="sideitem"><small>Status</small><span>In progress</span></div><div class="sideitem"><small>Dataset</small><span>ULB Credit Card Fraud Detection (Kaggle)</span></div><div class="sideitem"><small>Topics</small><span>Fraud Detection · Statistics · Isolation Forest · Scikit-learn</span></div><div class="sideitem"><small>Project library</small><span><a href="../../index.html">Return to all projects ↗</a></span></div></aside></div></main>
-<footer class="footer"><div class="wrap">My AI/ML Project Library · Project documentation is a work in progress.</div></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Payment transaction anomaly detection using Logistic Regression, Random Forest, XGBoost and SHAP explainability.">
+  <title>Payment Transaction Anomaly Detection | My AI/ML Project Library</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <style>
+    .project-content { max-width: 1080px; margin: 0 auto; }
+    .project-section { margin: 42px 0; }
+    .project-section h2 { margin-bottom: 10px; }
+    .project-section > p { line-height: 1.7; }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .metric, .content-panel {
+      border: 1px solid var(--border, #e5e7eb);
+      border-radius: 14px;
+      padding: 18px;
+      background: var(--card, #fff);
+    }
+    .metric strong { display:block; font-size: 1.55rem; margin-bottom: 5px; }
+    .metric span, .muted { color: var(--muted, #6b7280); font-size: .9rem; }
+    .architecture-image {
+      display:block; width:100%; height:auto; border-radius:12px;
+      border:1px solid var(--border, #e5e7eb);
+      background:#fff;
+    }
+    .action-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+    .action-links a { text-decoration:none; }
+    .note { font-size:.9rem; color:var(--muted, #6b7280); }
+    .back-link { display:inline-block; margin: 22px 0; }
+    .results-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .results-table th, .results-table td {
+      text-align:left; padding:11px; border-bottom:1px solid var(--border, #e5e7eb);
+    }
+    .results-table th { font-weight:600; }
+    @media (max-width: 640px) {
+      .results-table { display:block; overflow-x:auto; }
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="../../index.html">
+      <span class="mark">AI</span>
+      <span>My AI/ML Project Library</span>
+    </a>
+    <nav class="navlinks">
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#implementation">Implementation</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap project-content">
+  <a class="back-link" href="../../index.html">← Back to project library</a>
+
+  <section class="hero" id="overview">
+    <div class="eyebrow"><span class="pulse"></span> Machine Learning · Fraud Analytics · Explainable AI</div>
+    <h1>Payment Transaction <span class="gradient">Anomaly Detection.</span></h1>
+    <p class="lede">
+      An end-to-end investigation of highly imbalanced credit card transactions,
+      comparing supervised learning approaches and examining how model thresholds
+      affect fraud detection and false-alert volume.
+    </p>
+    <div class="meta">
+      <span class="pill">ULB Credit Card Fraud Dataset</span>
+      <span class="pill">XGBoost</span>
+      <span class="pill">Scikit-learn</span>
+      <span class="pill">SHAP</span>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Project at a glance</h2>
+    <p>
+      The objective is to identify fraudulent transactions in a dataset where
+      legitimate activity greatly outnumbers fraud. The work covers data
+      exploration, baseline modeling, class-imbalance strategies, threshold
+      selection, model comparison and post-hoc explainability.
+    </p>
+    <div class="project-grid">
+      <div class="metric"><strong>284,807</strong><span>Transactions in original dataset</span></div>
+      <div class="metric"><strong>492</strong><span>Fraudulent transactions</span></div>
+      <div class="metric"><strong>~0.173%</strong><span>Fraud prevalence</span></div>
+      <div class="metric"><strong>~578:1</strong><span>Legitimate-to-fraud ratio</span></div>
+    </div>
+    <p class="note">
+      Dataset counts and prevalence refer to the original ULB dataset before
+      duplicate removal.
+    </p>
+  </section>
+
+  <section class="project-section" id="architecture">
+    <h2>System architecture</h2>
+    <p>
+      The diagram separates the notebook-based machine learning lifecycle from
+      a proposed real-time fraud detection design. The real-time components are
+      architectural recommendations, not claims of an implemented production system.
+    </p>
+    <div class="content-panel">
+      <a href="../../assets/images/payment-fraud-detection-architecture.drawio.svg"
+         target="_blank" rel="noopener noreferrer">
+        <img class="architecture-image"
+             src="../../assets/images/payment-fraud-detection-architecture.drawio.svg"
+             alt="Payment fraud detection architecture, showing model development and a proposed real-time transaction decisioning pipeline."
+             loading="lazy">
+      </a>
+      <p class="note">Select the diagram to open the full-size SVG.</p>
+      <div class="action-links">
+        <a class="btn" href="../../assets/images/payment-fraud-detection-architecture.drawio"
+           target="_blank" rel="noopener noreferrer">Editable diagrams.net source ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="experiments">
+    <h2>Model experiments and results</h2>
+    <p>
+      Multiple approaches were explored to understand the impact of class
+      imbalance and decision thresholds. The final XGBoost test evaluation used
+      a 0.70 threshold selected during validation.
+    </p>
+    <div class="content-panel">
+      <h3>Final XGBoost test-set operating point</h3>
+      <div class="project-grid">
+        <div class="metric"><strong>77.32%</strong><span>Fraud precision</span></div>
+        <div class="metric"><strong>78.95%</strong><span>Fraud recall</span></div>
+        <div class="metric"><strong>0.8137</strong><span>PR-AUC</span></div>
+        <div class="metric"><strong>0.9750</strong><span>ROC-AUC</span></div>
+      </div>
+      <table class="results-table">
+        <thead><tr><th>Test-set outcome</th><th>Transactions</th></tr></thead>
+        <tbody>
+          <tr><td>True positives (fraud correctly flagged)</td><td>75</td></tr>
+          <tr><td>False positives (legitimate flagged)</td><td>22</td></tr>
+          <tr><td>False negatives (fraud missed)</td><td>20</td></tr>
+          <tr><td>True negatives (legitimate cleared)</td><td>56,629</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Results are from the notebook's final XGBoost evaluation. Precision,
+        recall and alert volume depend on the selected decision threshold.
+        The dataset's PCA-transformed features are anonymized and do not
+        provide direct business interpretations.
+      </p>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Explainability</h2>
+    <p>
+      Feature importance and SHAP summary analysis were used to inspect which
+      anonymized input features influence the fitted XGBoost model's predictions.
+      These explanations describe model behavior; they do not establish causal
+      relationships.
+    </p>
+    <p class="note">
+      The notebook contains the SHAP analysis and generated visualizations.
+      Additional static result images can be added here when exported from the notebook.
+    </p>
+  </section>
+
+  <section class="project-section" id="implementation">
+    <h2>Implementation and reproducibility</h2>
+    <p>
+      The annotated notebook documents the analysis cell by cell, with Markdown
+      explanations before code cells. It includes the data exploration,
+      model experiments, threshold analysis, final evaluation and SHAP work.
+    </p>
+    <div class="content-panel">
+      <h3>Jupyter Notebook</h3>
+      <p class="muted">Download the notebook and open it in Jupyter Notebook, JupyterLab or Kaggle.</p>
+      <div class="action-links">
+        <a class="btn" href="notebooks/payment-fraud-detection-annotated.ipynb" download>
+          Download annotated notebook ↓
+        </a>
+      </div>
+    </div>
+    <p class="note">
+      The notebook originally uses a Kaggle dataset input path. Update the data
+      loading cell for your local environment or Kaggle workspace before rerunning.
+      The dataset itself is not included in this project package.
+    </p>
+  </section>
+
+  <section class="callout">
+    <div>
+      <h3>From model experiments to production considerations.</h3>
+      <p>
+        A production deployment would require reliable online features,
+        transaction velocity and customer or merchant context, model serving,
+        operational monitoring, confirmed-outcome feedback and a governed
+        retraining process. These are proposed next steps beyond the notebook.
+      </p>
+    </div>
+    <a class="btn" href="../../index.html">Project library ↑</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    My AI/ML Project Library · Payment Transaction Anomaly Detection
+  </div>
+</footer>
+</body>
+</html>
