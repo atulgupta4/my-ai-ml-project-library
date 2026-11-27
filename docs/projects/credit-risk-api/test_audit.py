@@ -1,10 +1,11 @@
 
 from audit import initialize_audit_db, log_prediction
+import uuid
 
 initialize_audit_db()
 
 log_prediction(
-    request_id="test-001",
+    request_id=str(uuid.uuid4()),
     model_name="credit-risk-logistic-regression",
     model_version="1",
     run_id="442519574eba4901bfc49514bb027143",
