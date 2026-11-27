@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Credit card default-risk scoring with scikit-learn, SHAP, MLflow, FastAPI and SQLite audit logging.">
+<title>Credit Risk Scoring API</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141e32;--line:#2b3a54;--txt:#edf2fb;--muted:#adbad0;--orange:#f28c28;--gold:#ffbd73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#1b2c48,transparent 45%),var(--bg);color:var(--txt);font:16px/1.65 Segoe UI,Arial,sans-serif}a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+nav{border-bottom:1px solid var(--line);padding:18px 0}nav .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.brand{font-weight:800;color:var(--txt)}.brand b{color:var(--orange)}.links{display:flex;gap:18px;font-size:.9rem}
+.hero{padding:65px 0 35px}.eyebrow{color:var(--gold);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;letter-spacing:-.04em;margin:14px 0}.lead{font-size:1.15rem;color:var(--muted);max-width:850px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.btn{padding:10px 16px;border-radius:9px;border:1px solid var(--line);font-weight:700}.primary{background:var(--orange);color:#1a130c;border-color:var(--orange)}.secondary{background:var(--panel);color:var(--txt)}
+.metrics,.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.metric,.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.metric strong{display:block;color:var(--gold);font-size:1.7rem}.metric span,.muted,.card p{color:var(--muted)}section{padding:30px 0}h2{font-size:1.7rem;margin:0 0 12px}h3{margin:0 0 7px}.grid{grid-template-columns:repeat(2,1fr)}.card p{margin:0}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tag{border:1px solid #70451f;background:#2a211b;color:#ffd2a2;border-radius:99px;padding:4px 10px;font-size:.8rem}
+.diagram{border:1px solid var(--line);background:#0e1728;border-radius:14px;padding:12px}.diagram img{width:100%;display:block}table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);margin:14px 0}th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line)}th{color:var(--gold)}td{color:var(--muted)}.note{background:#1b2434;border-left:3px solid var(--orange);padding:14px 17px;border-radius:0 9px 9px 0;color:var(--muted);margin:17px 0}.note strong{color:var(--txt)}ul{color:var(--muted);padding-left:22px}footer{border-top:1px solid var(--line);margin-top:30px;padding:25px 0 40px;color:var(--muted);font-size:.9rem}
+@media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.links{gap:10px}.hero{padding-top:42px}}
+</style></head><body>
+<nav><div class="wrap"><a class="brand" href="../../index.html">My AI/ML Project Library <b>/</b></a><div class="links"><a href="#architecture">Architecture</a><a href="#results">Results</a><a href="#shap">SHAP</a><a href="#api">API</a></div></div></nav>
+<main class="wrap">
+<header class="hero"><div class="eyebrow">Machine Learning · Explainability · MLOps · API Engineering</div>
+<h1>Credit Risk Scoring API</h1>
+<p class="lead">An end-to-end machine learning workflow that estimates the probability of next-month credit-card default, then serves predictions through a REST API with experiment tracking, explainability, and prediction-level audit logging.</p>
+<div class="buttons"><a class="btn primary" href="https://github.com/atulgupta4/my-ai-ml-project-library/tree/main/docs/projects/credit-risk-api" target="_blank" rel="noopener">View source on GitHub ↗</a><a class="btn secondary" href="#architecture">Explore architecture</a></div>
+<div class="metrics"><div class="metric"><strong>30,000</strong><span>customer records</span></div><div class="metric"><strong>23</strong><span>input features</span></div><div class="metric"><strong>0.7282</strong><span>ROC-AUC · test set</span></div><div class="metric"><strong>0.5071</strong><span>PR-AUC · test set</span></div></div></header>
+
+<section><h2>Project overview</h2><div class="grid">
+<div class="card"><h3>Problem</h3><p>Estimate whether an existing credit-card customer will default on payment in the following month. The result is a risk signal for review, not an automated credit approval or rejection.</p></div>
+<div class="card"><h3>Dataset</h3><p>UCI Default of Credit Card Clients, dataset ID 350: 30,000 records, 23 predictors and a binary target. The data describes existing card clients in Taiwan.</p></div>
+<div class="card"><h3>Model</h3><p>A scikit-learn Pipeline combining StandardScaler and LogisticRegression, trained with a stratified 80/20 train/test split.</p></div>
+<div class="card"><h3>Engineering</h3><p>SHAP explainability, MLflow experiment tracking and model registration, FastAPI inference endpoints, Pydantic input validation, and SQLite prediction audit records.</p></div>
+</div><div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">scikit-learn</span><span class="tag">SHAP</span><span class="tag">MLflow</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span><span class="tag">SQLite</span></div></section>
+
+<section id="architecture"><h2>Solution architecture</h2><p class="muted">The workflow moves from dataset preparation and model development through explainability and model registry, then into API inference and audit logging.</p><div class="diagram"><img src="assets/architecture.svg" alt="Credit risk project architecture"></div></section>
+
+<section><h2>Model development</h2><div class="grid">
+<div class="card"><h3>1 · Data preparation</h3><p>Loaded UCI dataset ID 350, combined features and target, inspected the data, and prepared a stratified 80/20 split: 24,000 training and 6,000 test records.</p></div>
+<div class="card"><h3>2 · Baseline pipeline</h3><p>StandardScaler and LogisticRegression are combined in one pipeline so preprocessing is consistently applied during training and inference.</p></div>
+<div class="card"><h3>3 · Evaluation</h3><p>Evaluated ROC-AUC, PR-AUC, Brier score, log loss, accuracy, precision, recall, and F1 on the held-out test data.</p></div>
+<div class="card"><h3>4 · Explainability</h3><p>SHAP LinearExplainer was used to inspect global feature importance and the direction of individual feature contributions.</p></div>
+</div></section>
+
+<section id="results"><h2>Model performance</h2><p class="muted">Recorded MLflow metrics from the held-out 6,000-record test set.</p>
+<table><thead><tr><th>Metric</th><th>Result</th><th>What it measures</th></tr></thead><tbody>
+<tr><td>ROC-AUC</td><td>0.7282</td><td>Ranking/discrimination between default and non-default.</td></tr>
+<tr><td>PR-AUC</td><td>0.5071</td><td>Precision-recall performance for the positive class.</td></tr>
+<tr><td>Accuracy</td><td>0.8118</td><td>Overall fraction of correct classifications.</td></tr>
+<tr><td>Precision</td><td>0.7156</td><td>Share of predicted defaults that were actual defaults.</td></tr>
+<tr><td>Recall</td><td>0.2479</td><td>Share of actual defaults identified at the evaluated threshold.</td></tr>
+<tr><td>F1 score</td><td>0.3682</td><td>Harmonic mean of precision and recall.</td></tr>
+<tr><td>Brier score</td><td>0.1441</td><td>Mean squared probability prediction error.</td></tr>
+<tr><td>Log loss</td><td>0.4633</td><td>Probability-based classification loss.</td></tr>
+</tbody></table><div class="note"><strong>Interpretation:</strong> Accuracy alone hides the relatively low default-class recall (0.2479). Threshold selection needs an explicit business cost trade-off and further validation.</div></section>
+
+<section id="shap"><h2>Explainability with SHAP</h2><div class="grid">
+<div class="card"><h3>Global drivers</h3><p>September 2005 repayment status (X6) was the strongest global contributor. Other influential features included September bill amount (X12), credit limit (X1), and September previous payment (X18).</p></div>
+<div class="card"><h3>Feature effects</h3><p>Higher positive repayment-status codes generally pushed the model output toward default, while negative values generally pushed it away. SHAP values here are log-odds contributions, not percentage-point changes in probability.</p></div>
+</div><div class="note">SHAP explains how this fitted model uses the features; it does not establish causation or determine whether a feature is appropriate for a consequential credit decision.</div></section>
+
+<section><h2>MLflow model lifecycle</h2><ul>
+<li>Experiment tracked under <code>Credit_Risk_Scoring</code>.</li><li>Logged model configuration, sample counts, evaluation metrics, dataset identifier, and SHA-256 dataset fingerprint.</li>
+<li>Registered model: <code>credit-risk-logistic-regression</code>, version 1.</li><li>Loaded the registered model and verified prediction equivalence with the original pipeline.</li><li>Exported the model artifact for local API serving.</li></ul></section>
+
+<section id="api"><h2>REST API and audit logging</h2><div class="grid">
+<div class="card"><h3><code>GET /health</code></h3><p>Checks API availability and model metadata.</p></div><div class="card"><h3><code>POST /predict</code></h3><p>Accepts 23 input features, validates with Pydantic, and returns probability, decision label, threshold, model metadata, request ID, and latency.</p></div>
+<div class="card"><h3>Decision routing</h3><p>Prototype threshold is 0.30. Probabilities at or above it are labeled <b>MANUAL_REVIEW</b>; lower probabilities are labeled <b>LOW_RISK</b>.</p></div><div class="card"><h3>SQLite audit trail</h3><p>Each prediction stores a generated UUID, timestamp, model name/version/run ID, probability, threshold, decision, and latency.</p></div>
+</div><div class="note"><strong>Prototype limitation:</strong> The 0.30 threshold is exploratory, not calibrated or business-approved. These labels are routing labels, not lending decisions. This project is not represented as production-ready.</div></section>
+
+<section><h2>Potential next steps</h2><ul><li>Expand API tests for validation, prediction consistency, and audit persistence.</li><li>Evaluate threshold choices against explicit false-positive and false-negative costs.</li><li>Assess probability calibration and model stability on additional data.</li><li>Review fairness, privacy, security, monitoring, and applicable regulatory requirements before any consequential use.</li></ul></section>
+</main><footer><div class="wrap">My AI/ML Project Library · Educational portfolio project · Not intended for real-world credit decisions.</div></footer></body></html>
